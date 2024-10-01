@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('../static/images/image.jpg') no-repeat center center/cover;
+        }
+
+        .upload-box {
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 2px solid rgba(255, 255, 255, .5);
+            backdrop-filter: blur(15px);
+            background: transparent;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            width: 350px;
+        }
+
+        .upload-box h2 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        /* 完全隐藏默认的文件选择按钮 */
+        .input-box input[type="file"] {
+            opacity: 0;
+            /* 让文件选择按钮完全透明 */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* 自定义的上传按钮 */
+        .custom-file-upload {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            cursor: pointer;
+            color: #333;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-file-upload:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .custom-file-upload ion-icon {
+            font-size: 1.5em;
+            margin-right: 8px;
+            color: #666;
+        }
+
+        /* 文件名样式 */
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff4b4b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="upload-box">
+        <form method="POST" enctype="multipart/form-data">
+            <h2>Upload</h2>
+            <div class="input-box">
+                <!-- 自定义文件上传按钮 -->
+                <label class="custom-file-upload">
+                    <ion-icon name="folder"></ion-icon>
+                    <span id="file-label-text">Choose a File</span>
+                    <!-- 完全透明的文件选择框 -->
+                    <input type="file" name="myfile" id="file-upload" required>
+                </label>
+                <div class="file-name" id="file-name"></div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Install ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        // 监听文件选择，显示文件名
+        const fileInput = document.getElementById('file-upload');
+        const fileNameDisplay = document.getElementById('file-name');
+        const labelText = document.getElementById('file-label-text');
+
+        fileInput.addEventListener('change', function () {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                labelText.textContent = 'File selected:';
+                fileNameDisplay.textContent = fileName;
+            } else {
+                labelText.textContent = 'Choose a File';
+                fileNameDisplay.textContent = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
