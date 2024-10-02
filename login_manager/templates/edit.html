@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-image: url('../static/images/image.jpg');
+            /* Background image */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .edit-container h2 {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff7e67;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff5a3d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="edit-container">
+        <h2>Edit User: {{ user.username }}</h2>
+        <form action="{{ url_for('edit', user_id=user.id) }}" method="POST">
+            <input type="text" name="username" value="{{ user.username }}" required>
+            <input type="email" name="email" value="{{ user.email }}" required>
+            <input type="text" name="password" value="{{ user.password }}" required>
+            <select name="sex" required>
+                <option value="1" {% if user.sex==1 %}selected{% endif %}>Male</option>
+                <option value="2" {% if user.sex==2 %}selected{% endif %}>Female</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

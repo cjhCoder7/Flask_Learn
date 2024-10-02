@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-image: url('../static/images/image.jpg');
+            /* Background image here */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        .register-container h2 {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+        }
+
+        .register-container input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .register-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 16px;
+            border: none;
+            background-color: #ff7e67;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .register-container button:hover {
+            background-color: #ff5a3d;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="{{ url_for('reg') }}" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="sex">
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
+</body>
+
+</html>

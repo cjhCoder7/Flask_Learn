@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-image: url('../static/images/image.jpg');
+            /* Background image here */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+        }
+
+        .login-container input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 16px;
+            border: none;
+            background-color: #ff7e67;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container button:hover {
+            background-color: #ff5a3d;
+        }
+
+        .login-container label {
+            color: white;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size: 14px;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .remember-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-container input {
+            margin-right: 8px;
+            /* Adds space between the checkbox and the label */
+        }
+
+        .remember-forgot a {
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .register {
+            margin-top: 20px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .register a {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="{{ url_for('login') }}" method="POST">
+            <input type="text" name="username" placeholder="username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div class="remember-forgot">
+                <div class="remember-container">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="register">
+            Don't have an account? <a href="{{ url_for('reg') }}">Register</a>
+        </div>
+    </div>
+</body>
+
+</html>
