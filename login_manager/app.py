@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_
@@ -49,9 +49,11 @@ def reg():
         existing_email = User.query.filter_by(email=email).first()
 
         if existing_user:
-            return "用户名已存在，请选择其他用户名"
+            flash('Usename Exist', 'danger')
+            return render_template("reg.html")
         if existing_email:
-            return "邮箱已注册，请选择其他邮箱"
+            flash('Email Exist', 'danger')
+            return render_template("reg.html")
 
         db.session.add(User(username=username, password=password, email=email, sex=sex))
         db.session.commit()
@@ -71,7 +73,7 @@ def login():
             print(user)
             login_user(user)
             return redirect(url_for("index"))
-        return "用户登录失败"
+        flash('Login Failed!', 'danger')
     return render_template("login.html")
 
 
@@ -110,9 +112,11 @@ def edit(user_id):
         ).first()
 
         if existing_user:
-            return "用户名已存在，请选择其他用户名"
+            flash('Usename Exist', 'danger')
+            return render_template("edit.html", user=user)
         if existing_email:
-            return "邮箱已注册，请选择其他邮箱"
+            flash('Email Exist', 'danger')
+            return render_template("edit.html", user=user)
 
         # 更新用户信息
         user.username = new_username
